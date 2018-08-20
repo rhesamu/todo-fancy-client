@@ -6,11 +6,12 @@ new Vue({
     todos: []
   },
   created() {
-    if (!localStorage.getItem('token')) {
-      window.location.replace = 'login.html'
+    let token = localStorage.getItem('token')
+    if (!token) {
+      window.location.replace('login.html')
+    } else {
+      this.getAllTodos()
     }
-    this.getAllTodos()
-    
   },
   methods: {
     getAllTodos() {
@@ -28,6 +29,26 @@ new Vue({
       .catch(err => {
         console.log(err.response)
       })
+    },
+    deleteTodo(value) {
+      let token = localStorage.getItem('token')
+      let todoId = value
+      axios({
+        method: 'delete',
+        url: `${BASE_URL}/todos/${todoId}`,
+        headers: { token }
+      })
+      .then(response => {
+        console.log(response)
+        window.location.reload(true)
+      })
+      .catch(err => {
+        console.log(err.response)
+      })
+    },
+    logout() {
+      localStorage.removeItem('token')
+      window.location.replace('login.html')
     }
   }
 })
