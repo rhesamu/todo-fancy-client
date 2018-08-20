@@ -9,13 +9,26 @@
 </head>
 <body>
   <div id="app">
-    <div class="container" style="max-width: 500px;">
+    <div class="container">
       <div class="row">
-        <todo-list 
-          v-for="(todo, index) in todos"
-          :todo="todo"
-          :key="index"
-        ></todo-list>
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Add todo</h5>
+              <form @submit.prevent="addTodo" action="post">
+                <div class="form-group">
+                  <input v-model="title" type="text" class="form-control" placeholder="title">
+                </div>
+                <div class="form-group">
+                  <input v-model="deadline" type="date" class="form-control">
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +39,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 
-  <script src="scripts/components/TodoList.js"></script>
-  <script src="scripts/index.js"></script>
+  <script src="scripts/create.js"></script>
 </body>
 </html>
