@@ -35,6 +35,9 @@ Vue.component('input-form', {
                   <button v-else type="submit" class="btn btn-primary">Register</button>
                 </div>
             </form>
+            <div v-if="action == 'login'" class="form-group">
+              
+            </div>
             <a v-if="action == 'login'" href="register.html">Don't have an account? Register here</a>
           </div>
         </div>
